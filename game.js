@@ -54,12 +54,13 @@
     clock.textContent = time ? "🕒 " + time : "";
     clock.hidden = !time;
   }
-  function clearBox() { box.innerHTML = ""; box.classList.remove("fade"); void box.offsetWidth; box.classList.add("fade"); }
+  function clearBox() { window.scrollTo(0, 0); box.innerHTML = ""; box.classList.remove("fade"); void box.offsetWidth; box.classList.add("fade"); }
 
   function nextButton(label, fn) {
     const b = el("button", "btn next", label || G.ui.next);
     b.onclick = fn;
     b.dataset.hotkey = "next";
+    requestAnimationFrame(() => b.scrollIntoView({ block: "nearest", behavior: "smooth" }));
     return b;
   }
 
